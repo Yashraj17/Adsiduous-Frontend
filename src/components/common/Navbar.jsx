@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Upload, LogIn, LogOut, User as UserIcon, Sparkles, FileText } from 'lucide-react';
 import { logoutUser } from '../../store/authSlice';
 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '/api';
+const swaggerDocsUrl = import.meta.env.VITE_API_DOCS_URL || apiBaseUrl.replace(/\/api\/?$/, '') + '/api-docs';
+
 export const Navbar = ({ onOpenAuthModal, onOpenUploadModal }) => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
@@ -38,7 +41,7 @@ export const Navbar = ({ onOpenAuthModal, onOpenUploadModal }) => {
         {/* Action Controls & Auth */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <a
-            href="http://localhost:5000/api-docs"
+            href={swaggerDocsUrl}
             target="_blank"
             rel="noreferrer"
             className="btn-secondary"
